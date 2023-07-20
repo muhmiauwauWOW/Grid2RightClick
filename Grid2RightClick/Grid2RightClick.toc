@@ -1,8 +1,0 @@
-## Interface: 100002
-## Title: Grid2 |cd1ff7d0aRight Click|r
-## Notes: Use Macro as Right Click action
-## Author: muhmiauwau
-## Version: 1.0
-## Dependencies: Grid2
-
-Grid2RightClick.lua
