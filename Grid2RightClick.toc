@@ -2,7 +2,7 @@
 ## Title: Grid2 |cd1ff7d0aRight Click|r
 ## Notes: Use Macro as Right Click action
 ## Author: muhmiauwau
-## Version: 1.1
+## Version: 1.2
 ## Dependencies: Grid2
 
 Grid2RightClick.lua

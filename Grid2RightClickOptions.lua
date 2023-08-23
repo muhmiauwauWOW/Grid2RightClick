@@ -9,7 +9,7 @@ function getMacroData()
 	do 
 		local name, icon, body = GetMacroInfo(i)
 		if(name) then 
-			values[i] = name
+			values[name] = name
 		end
 	end
 	return values
@@ -18,6 +18,7 @@ end
 Grid2Ace:RegisterEvent("ADDON_LOADED", function(event, addonName)
 	if(addonName == "Grid2Options") then
 		local theme = Grid2Options.editedTheme
+
 
 		local Options  = {
 			group1 = { 
@@ -34,7 +35,7 @@ Grid2Ace:RegisterEvent("ADDON_LOADED", function(event, addonName)
 						order = 10,
 						get = function () return theme.frame.macroRightClick end,
 						set = function (_, v)
-							theme.frame.macroRightClick = v or nil
+							theme.frame.macroRightClick = true or false
 							Grid2Layout:RefreshLayout()
 						end,
 					}, 
@@ -43,11 +44,12 @@ Grid2Ace:RegisterEvent("ADDON_LOADED", function(event, addonName)
 						name = "Select Macro",
 						desc = "Select used Macro",
 						order = 40,
-						get = function () return theme.frame.macroRightClickMacro end,
+						get = function () return theme.frame.macroRightClickMacro
+						end,
 						set = function (_, v)
-						 theme.frame.macroRightClickMacro = v
-						 Grid2Layout:RefreshLayout()
-					  end,
+							theme.frame.macroRightClickMacro  = v or nil
+							Grid2Layout:RefreshLayout()
+					  	end,
 						values = getMacroData();
 					}
 				}
