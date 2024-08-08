@@ -1,4 +1,4 @@
-## Interface: 110020
+## Interface: 110002
 ## Title: Grid2 |cd1ff7d0aRight Click|r
 ## Notes: Use Macro as Right Click action
 ## Author: muhmiauwau
