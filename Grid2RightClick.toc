@@ -4,6 +4,7 @@
 ## Author: muhmiauwau
 ## Version: @project-version@
 ## Dependencies: Grid2
+## X-Curse-Project-ID: 784771
 
 Grid2RightClick.lua
 Grid2RightClickOptions.lua
