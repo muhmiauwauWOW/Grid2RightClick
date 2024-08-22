@@ -10,7 +10,7 @@ function Grid2RightClick:setAction()
 	local v = Grid2Frame.db.profile.menuDisabled;
 
 	Grid2Frame:WithAllFrames( function(f) 
-		f:SetAttribute("*type2",rc and "macro" or ((not v) and "togglemenu" or nil)); 
+		f:SetAttribute("*type2", rc and "macro" or ((not v) and "togglemenu" or nil));
 		f:SetAttribute("macro", Grid2Frame.db.profile.macroRightClickMacro)
 	end)
 end
