@@ -14,6 +14,7 @@ Grid2Ace:RegisterMessage("Grid_UnitUpdated", function()
 	Grid2RightClick:setAction()
 end)
 
+ns.oldidx = nil
 ns.newidx = nil
 
 local width = 0.867
@@ -90,6 +91,7 @@ function ns.checkMacro(idx, name)
 end
 
 function ns.getIdx(idx, base)
+	idx = idx or ns.oldidx or 1
 	return idx - base
 end
 
@@ -114,6 +116,8 @@ addon:SetScript("OnEvent", function(event, name)
 	if not Grid2Frame.db.profile.macroRightClickMacro then return end
 	if not Grid2Frame.db.profile.macroRightClickMacroName then return end
 
+	ns.oldidx = Grid2Frame.db.profile.macroRightClickMacro
+
 	-- get aLL macros
 	local check = ns.checkMacro(Grid2Frame.db.profile.macroRightClickMacro, Grid2Frame.db.profile.macroRightClickMacroName)
 	if check then return end 
@@ -128,9 +132,10 @@ addon:SetScript("OnEvent", function(event, name)
 				end
 			end
 		end
+		return nil
 	end
 
-	ns.newidx = searchMacro()
+	ns.newidx = searchMacro() or ns.oldidx
 	Grid2Frame.db.profile.macroRightClickMacro = ns.newidx
 	Grid2RightClick:setAction()
 end)
