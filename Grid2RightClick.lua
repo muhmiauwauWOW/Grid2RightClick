@@ -4,6 +4,15 @@ local Grid2RightClick = {};
 local Grid2Ace = LibStub("AceAddon-3.0"):GetAddon("Grid2")
 
 
+local addonl = CreateFrame("Frame")
+addonl:RegisterEvent("PLAYER_LOGIN")
+addonl:SetScript("OnEvent", function(event, name)
+	if type(Grid2Frame.db.profile.macroRightClickMacro) == "number" then return end
+	Grid2Frame.db.profile.macroRightClickMacroName = Grid2Frame.db.profile.macroRightClickMacro
+	Grid2Frame.db.profile.macroRightClickMacro =  ns.getMacroidbyName(Grid2Frame.db.profile.macroRightClickMacro)
+end)
+
+
 Grid2Ace:RegisterEvent("ADDON_LOADED", function(event, addonName)
 	if(addonName == "Grid2Options") then
 		Grid2Options:AddThemeOptions( "Grid2RightClick", "Grid2RightClick", ns.Options)
@@ -16,6 +25,14 @@ end)
 
 ns.oldidx = nil
 ns.newidx = nil
+
+function ns.getMacroidbyName(name)
+	local max = MAX_CHARACTER_MACROS + MAX_ACCOUNT_MACROS
+	for i = 1, max, 1 do
+		if name == GetMacroInfo(i) then return i end
+	end
+	return 1
+end
 
 local width = 0.867
 
@@ -70,8 +87,8 @@ ns.Options  = {
 					v = MAX_ACCOUNT_MACROS + v
 					local name = GetMacroInfo(v)
 
-					Grid2Options.editedTheme.frame.macroRightClickMacroName  = name or nil
-					Grid2Options.editedTheme.frame.macroRightClickMacro  = v or nil
+					Grid2Options.editedTheme.frame.macroRightClickMacroName = name or nil
+					Grid2Options.editedTheme.frame.macroRightClickMacro = v or nil
 					Grid2Layout:RefreshLayout()
 				  end,
 				values = function() return ns.getMacroData(MAX_CHARACTER_MACROS, MAX_ACCOUNT_MACROS) end;
@@ -112,6 +129,7 @@ addon:SetScript("OnEvent", function(event, name)
 	-- check if char macros are loaded
 	local cname = GetMacroInfo(MAX_ACCOUNT_MACROS + 1)
 	if not cname then return end
+
 
 	if not Grid2Frame.db.profile.macroRightClickMacro then return end
 	if not Grid2Frame.db.profile.macroRightClickMacroName then return end
