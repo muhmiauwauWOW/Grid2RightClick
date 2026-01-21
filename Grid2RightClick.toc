@@ -1,4 +1,4 @@
-## Interface: 110207
+## Interface: 120000
 ## Title: Grid2 |cd1ff7d0aRight Click|r
 ## Notes: Use macro as right-click action
 ## Author: muhmiauwau
